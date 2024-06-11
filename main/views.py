@@ -11,7 +11,7 @@ def enregistrer_log(request):
     if request.method == 'POST':
         code_barre = request.POST.get('code_barre')
         try:
-            etudiant = Etudiant.objects.get(code_bar=code_barre)
+            etudiant = Etudiant.objects.filter(code_bar=code_barre).first()
             log = Timedepointage.objects.create(id_etudiant=etudiant)
             data = {
                 'idlog': log.id,  # Utilisez log.id pour l'identifiant du log
